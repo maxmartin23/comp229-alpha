@@ -1,4 +1,4 @@
-mongodb+srv://alpha:<password>@alpha.umgxf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+mongodb+srv://alpha:<password>@alpha.umgxf.mongodb.net/incident-management?retryWrites=true&w=majority
 
 User: alpha
 Passwd: alpha2021
