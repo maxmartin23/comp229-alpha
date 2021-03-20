@@ -1,0 +1,61 @@
+<%- include partials/header.ejs %> <%- include partials/main_nav.ejs %>
+
+<!--Main Body-->
+<main class="container">
+  <div class="row pb-3">
+    <div class="col-md-offset-1 col">
+      <h1><%= title %></h1>
+    </div>
+
+    <div class="col text-right pt-2">
+      <a href="/incidentLog/create" class="btn btn-success"
+        ><i class="fas fa-plus-circle"></i> Create New
+      </a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <table class="table table-bordered table-striped table-hover">
+        <thead>
+          <tr class="row m-0">
+            <th class="col text-center">Number</th>
+            <th class="col-3 text-center">Description</th>
+            <th class="col text-center">Priority</th>
+            <th class="col text-center">Status</th>
+            <th class="col text-center">Create Date</th>
+            <th class="col text-center">Options</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% for(let count=0; count < IncidentLog.length; count++ ) {%>
+            <tr class="row no-gutters">
+              <td class="col text-center"><%= IncidentLog[count].number %></td>
+              <td class="col-3 text-justify px-1">
+                <%= (IncidentLog[count].description.length > 100)?IncidentLog[count].description.substring(0,100) + "...":IncidentLog[count].description.substring(0,100) %>
+              </td>
+              <td class="col text-center"><%= IncidentLog[count].priority %></td>
+              <td class="col text-center"><%= IncidentLog[count].status %></td>
+              <td class="col text-center">
+                <%= IncidentLog[count].createDate.toLocaleDateString() %>
+              </td>
+              <td class="col text-center">
+                <a href="/incidentLog/edit/<%= IncidentLog[count]._id %>" class="btn btn-secondary">
+                  <i class="fas fa-edit"></i>
+                </a>
+              </td>
+              <td class="text-center col-1">
+                <a href="/incidentLog/delete/<%= IncidentLog[count]._id %>" class="btn btn-danger btn-sm">
+                <i class="fas fa-trash-alt"></i> Delete</a>
+                </td>
+            </tr>
+            <% } %>
+        </tbody>
+        
+      </table>
+    </div>
+  </div>
+</main>
+
+<%- include partials/footer.ejs %>
