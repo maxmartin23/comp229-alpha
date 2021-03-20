@@ -1,55 +1,42 @@
-<%- include partials/header.ejs %>
+<%- include partials/header.ejs %> 
+<%- include partials/main_nav.ejs %>
 
-    <%- include partials/main_nav.ejs %>
+<!--Main Body-->
+<main class="container">
+  <div class="row">
+    <!-- <div class="col-md-offset-1 col-md"> -->
+    <div>
+      <h1><%= title %></h1>
+    </div>
+    <div>
+      <br />
+      <!-- <div>
+                        <a href="/incidentLog/create" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Create New </a>
+                    </div>
+                    <br/> -->
+      <table class="table table-bordered table-striped table-hover">
+        <tr>
+          <th class="col text-center">Number</th>
+          <th class="col-lg text-center">Description</th>
+          <th class="col text-center">Priority</th>
+          <th class="col text-center">Status</th>
+          <th class="col text-center">Create Date</th>
+        </tr>
 
-        <!--Main Body-->
-        <main class="container">
-            <div class="row">
-                <div class="col-md-offset-1">
-                    <h1>
-                        <%= title %>
-                    </h1>
-                    <br>
-                    <table class="table table-bordered table-striped table-hover">
-                        <tr>
-                            <th class="col text-center">Name</th>
-                            <th class="col-2 text-center">Address</th>
-                            <th class="col-2 text-center">Description</th>
-                            <th class="col text-center">Priority</th>
-                            <th class="col text-center">Status</th>
+        <% for(let count=0; count < IncidentLog.length; count++ ) {%>
+        <tr>
+          <td class="col text-center"><%= IncidentLog[count].number %></td>
+          <td class="col text-center"><%= IncidentLog[count].description %></td>
+          <td class="col text-center"><%= IncidentLog[count].priority %></td>
+          <td class="col text-center"><%= IncidentLog[count].status %></td>
+          <td class="col text-center">
+            <%= IncidentLog[count].createDate.toLocaleString() %>
+          </td>
+        </tr>
+        <% } %>
+      </table>
+    </div>
+  </div>
+</main>
 
-                        </tr>
-
-                        <% for(let count=0; count < IncidentLog.length; count++ ) {%>
-                            <tr>
-                                <td class="col text-center">
-                                    <%= IncidentLog[count].name %>
-                                </td>
-                                <td class="col-2 text-center">
-                                    <%= IncidentLog[count].address %>
-                                </td>
-                                <td class="col-2 text-center">
-                                    <%= IncidentLog[count].incidentDescription %>
-                                </td>
-                                <td class="col text-center">
-                                    <%= IncidentLog[count].incidentPriority %>
-                                </td>
-                                <td class="col text-center">
-                                    <%= IncidentLog[count].status %>
-                                </td>
-
-                            </tr>
-                            <% } %>
-                    </table>
-                </div>
-
-                
-
-            </div>
-        </main>
-
-
-
-
-
-        <%- include partials/footer.ejs %>
+<%- include partials/footer.ejs %>

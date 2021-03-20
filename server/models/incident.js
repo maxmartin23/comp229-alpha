@@ -4,11 +4,11 @@ let mongoose = require('mongoose');
 
 let Incident = mongoose.Schema({
 
-    name:  {
+    number:  {
         type: String,
         default: '',
         trim:true,
-        required: 'Name is required'
+        required: 'Number is required'
     }, 
     address:{
         type: String,
@@ -16,12 +16,13 @@ let Incident = mongoose.Schema({
         trim:true,
         
     },
-    incidentDescription: {
+    description: {
         type: String,
         default:'',
         trim:true,
+        required: 'Description is required'
     },
-    incidentPriority:{
+    priority:{
         type: String,
         default:'',
         trim:true,
@@ -30,6 +31,25 @@ let Incident = mongoose.Schema({
         type: String,
         default: '',
         trim:true
+    },
+    customerInfo:{
+        type: String,
+        default: '',
+        trim:true
+    },
+    narrative:{
+        type: String,
+        default: '',
+        trim:true
+    },
+    resolution:{
+        type: String,
+        default: '',
+        trim:true
+    },
+    createDate:{
+        type: Date,
+        default: Date.now(),
     }
 },
 {

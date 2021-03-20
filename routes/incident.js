@@ -4,6 +4,8 @@ let mongoose = require('mongoose');
 
 
 let Incident = require('../server/models/incident')
+let incidentController = require('../server/controllers/incident.controller');
+const incident = require('../server/models/incident');
 
 
 router.get('/',  (req, res, next) => {
@@ -17,5 +19,13 @@ router.get('/',  (req, res, next) => {
 
     });   
 });
+
+router.get('/create',  incidentController.displayCreate);
+
+router.post('/create', incidentController.processCreate);
+
+router.get('/edit/:id',  incidentController.displayCreate);
+
+router.post('/edit/:id', incidentController.processCreate);
 
 module.exports = router;

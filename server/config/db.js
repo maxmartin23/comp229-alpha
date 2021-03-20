@@ -1,5 +1,4 @@
 module.exports = 
 {
-    //"URI": "mongodb://localhost/incident"
-    "URI": "mongodb+srv://kerikuma:8ucpIJkneEPerLM3@incidentdb.2gauw.mongodb.net/incident?retryWrites=true&w=majority"
+    "URI": "mongodb+srv://alpha:alpha2021@alpha.umgxf.mongodb.net/incident-management?retryWrites=true&w=majority"
 }

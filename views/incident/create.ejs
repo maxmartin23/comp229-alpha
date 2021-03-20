@@ -1,51 +1,88 @@
-<%- include partials/header.ejs %>
+<%- include ../partials/header.ejs %> 
+<%- include ../partials/main_nav.ejs %>
 
-    <%- include partials/main_nav.ejs %>
+<!--Main Body-->
+<main class="container">
+  <div class="row">
+    <div class="col-md-offset-1">
+      <h1><%= title %></h1>
+      <br />
 
-        <!--Main Body-->
-        <main class="container">
-            <div class="row">
-                <div class="col-md-offset-1">
-                    <h1>
-                        <%= title %>
-                    </h1>
-                    <br>
-                    <table class="table table-bordered table-striped table-hover">
-                        <tr>
-                            <th class="col text-center">Name</th>
-                            <th class="col-2 text-center">Address</th>
-                            <th class="col-2 text-center">Description</th>
-                            <th class="col text-center">Priority</th>
-                            <th class="col text-center">Status</th>
+      <div class="form">
+        <form method="POST">
+          <div class="form-group">
+            <label for="title">Description *</label>
+            <input
+              type="text"
+              class="form-control"
+              id="description"
+              name="description"
+              placeholder="Describe the incident"
+              requi
+            />
+          </div>
 
-                        </tr>
+          <div class="form-group">
+            <label for="priority">Priority</label>
+            <select name="priority" id="priority">
+                <option value="HIGH">High</option>
+                <option value="MEDIUM" selected>Medium</option>
+                <option value="LOW">Low</option>
+            </select>
+          </div>
 
-                        <% for(let count=0; count < IncidentLog.length; count++ ) {%>
-                            <tr>
-                                <td class="col text-center">
-                                    <%= IncidentLog[count].name %>
-                                </td>
-                                <td class="col-2 text-center">
-                                    <%= IncidentLog[count].address %>
-                                </td>
-                                <td class="col-2 text-center">
-                                    <%= IncidentLog[count].incidentDescription %>
-                                </td>
-                                <td class="col text-center">
-                                    <%= IncidentLog[count].incidentPriority %>
-                                </td>
-                                <td class="col text-center">
-                                    <%= IncidentLog[count].status %>
-                                </td>
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select name="status" id="status">
+                <option value="NEW" selected>New</option>
+                <option value="PROGRESS">Progress</option>
+                <option value="DISPATCHED">Dispatched</option>
+                <option value="IGNORED">Ignored</option>
+                <option value="CLOSED">Closed</option>
+            </select>
+          </div>
 
-                            </tr>
-                            <% } %>
-                    </table>
-                </div>
+          <div class="form-group">
+            <label for="customerInfo">Customer Information</label>
+            <input
+              type="text"
+              class="form-control"
+              id="customerInfo"
+              name="customerInfo"
+              placeholder="Type in the customer information"
+            />
+          </div>
 
-                
+          <div class="form-group">
+            <label for="narrative">Incident Narrative</label>
+            <input
+              type="text"
+              class="form-control"
+              id="narrative"
+              name="narrative"
+              placeholder="Type in the incident narrative"
+            />
+          </div>
 
-            </div>
-        </main>
+          <div class="form-group">
+            <label for="resolution">Incident Resolution</label>
+            <input
+              type="text"
+              class="form-control"
+              id="resolution"
+              name="reslution"
+              placeholder="Type in the incident resolution"
+            />
+          </div>
 
-        <%- include partials/footer.ejs %>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary"><i class="far fa-save"></i> Save</button>
+            <a href="/incidentLog" class="btn btn-secondary"><i class="fas fa-backward"></i> Back </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include ../partials/footer.ejs %>
