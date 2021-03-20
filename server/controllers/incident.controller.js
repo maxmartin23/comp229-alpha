@@ -14,7 +14,7 @@ let Incident = require("../models/incident");
 
 //Controller action for displaying create incident view
 module.exports.displayCreate = (req, res, next) => {
-  res.render("incident/create", { title: "Create New Incident" });
+  res.render("incident/create", { title: "Create new incident" });
 };
 
 //Controller action for processing create action
@@ -42,6 +42,49 @@ module.exports.processCreate = (req, res, next) => {
   });
 };
 
+//Controller action for displaying edit incident view
+module.exports.displayEdit = (req, res, next) => {
+  let id = req.params.id;
+  Incident.findById(id, (err, incident) => {
+    if (err) {
+      console.error(err);
+      res.end(err);
+    } else {
+      console.log(incident.number);
+      res.render("incident/edit", {
+        title: "Update incident information",
+        incident: incident,
+      });
+    }
+  });
+};
+
+//Controller action for processing edit action
+module.exports.processEdit = (req, res, next) => {
+  let id = req.params.id;
+
+  let incident = Incident({
+    _id: id,
+    number: req.body.number,
+    address: req.body.address,
+    description: req.body.description,
+    priority: req.body.priority,
+    status: req.body.status,
+    customerInfo: req.body.customerInfo,
+    narrative: req.body.narrative,
+    resolution: req.body.resolution,
+  });
+
+  Incident.updateOne({ _id: id }, incident, (err) => {
+    if (err) {
+      console.log(err);
+      res.end(err);
+    } else {
+      res.redirect("/incidentLog");
+    }
+  });
+};
+
 /**
  * Function for creating a new record number structure
  * based on current date and time
@@ -58,6 +101,19 @@ function createIncidentNumber() {
   let seconds = currentDate.getSeconds();
   let millis = currentDate.getMilliseconds();
 
-  let result = year + '' + month + '' + day + '-' + hours + '' + minutes + '' + seconds + '' + millis;
+  let result =
+    year +
+    "" +
+    month +
+    "" +
+    day +
+    "-" +
+    hours +
+    "" +
+    minutes +
+    "" +
+    seconds +
+    "" +
+    millis;
   return result;
 }

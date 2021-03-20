@@ -2,36 +2,53 @@
 
 <!--Main Body-->
 <main class="container">
-  <div class="row">
-    <div class="col-md-offset-1 col-md">
+  <div class="row pb-3">
+    <div class="col-md-offset-1 col">
       <h1><%= title %></h1>
-      <br />
-      <div>
-        <a href="/incidentLog/create" class="btn btn-primary"
-          ><i class="fas fa-plus-circle"></i> Create New
-        </a>
-      </div>
-      <br />
-      <table class="table table-bordered table-striped table-hover">
-        <tr>
-          <th class="col text-center">Number</th>
-          <th class="col-lg text-center">Description</th>
-          <th class="col text-center">Priority</th>
-          <th class="col text-center">Status</th>
-          <th class="col text-center">Create Date</th>
-        </tr>
+    </div>
 
-        <% for(let count=0; count < IncidentLog.length; count++ ) {%>
-        <tr>
-          <td class="col text-center"><%= IncidentLog[count].number %></td>
-          <td class="col text-center"><%= IncidentLog[count].description %></td>
-          <td class="col text-center"><%= IncidentLog[count].priority %></td>
-          <td class="col text-center"><%= IncidentLog[count].status %></td>
-          <td class="col text-center">
-            <%= IncidentLog[count].createDate.toLocaleString() %>
-          </td>
-        </tr>
-        <% } %>
+    <div class="col text-right pt-2">
+      <a href="/incidentLog/create" class="btn btn-success"
+        ><i class="fas fa-plus-circle"></i> Create New
+      </a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <table class="table table-bordered table-striped table-hover">
+        <thead>
+          <tr class="row m-0">
+            <th class="col text-center">Number</th>
+            <th class="col-3 text-center">Description</th>
+            <th class="col text-center">Priority</th>
+            <th class="col text-center">Status</th>
+            <th class="col text-center">Create Date</th>
+            <th class="col text-center">Options</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% for(let count=0; count < IncidentLog.length; count++ ) {%>
+            <tr class="row no-gutters">
+              <td class="col text-center"><%= IncidentLog[count].number %></td>
+              <td class="col-3 text-justify px-1">
+                <%= (IncidentLog[count].description.length > 100)?IncidentLog[count].description.substring(0,100) + "...":IncidentLog[count].description.substring(0,100) %>
+              </td>
+              <td class="col text-center"><%= IncidentLog[count].priority %></td>
+              <td class="col text-center"><%= IncidentLog[count].status %></td>
+              <td class="col text-center">
+                <%= IncidentLog[count].createDate.toLocaleDateString() %>
+              </td>
+              <td class="col text-center">
+                <a href="/incidentLog/edit/<%= IncidentLog[count]._id %>" class="btn btn-secondary">
+                  <i class="fas fa-edit"></i>
+                </a>
+              </td>
+            </tr>
+            <% } %>
+        </tbody>
+        
       </table>
     </div>
   </div>

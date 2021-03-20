@@ -24,8 +24,8 @@ router.get('/create',  incidentController.displayCreate);
 
 router.post('/create', incidentController.processCreate);
 
-router.get('/edit/:id',  incidentController.displayCreate);
+router.get('/edit/:id',  incidentController.displayEdit);
 
-router.post('/edit/:id', incidentController.processCreate);
+router.post('/edit/:id', incidentController.processEdit);
 
 module.exports = router;
