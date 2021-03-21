@@ -85,6 +85,23 @@ module.exports.processEdit = (req, res, next) => {
   });
 };
 
+//Controller action for delete incident view
+module.exports.performDelete = (req, res, next) => {
+  let id = req.params.id;
+
+  Incident.remove({_id: id}, (err) => {
+      if(err)
+      {
+          console.log(err);
+          res.end(err);
+      }
+      else
+      {
+        res.redirect('/incidentLog');
+      }
+  });
+};
+
 /**
  * Function for creating a new record number structure
  * based on current date and time
