@@ -12,6 +12,20 @@ let router = express.Router();
 let mongoose = require("mongoose");
 let Incident = require("../models/incident");
 
+module.exports.displayList = (req, res, next) => {
+  Incident.find((err, IncidentLog) => {
+    if (err) {
+      return console.error(err);
+    } else {
+      res.render("incidentList", {
+        title: "List of Incidents",
+        IncidentLog: IncidentLog,
+      });
+      //console.log(IncidentLog);
+    }
+  })
+};
+
 //Controller action for displaying create incident view
 module.exports.displayCreate = (req, res, next) => {
   res.render("incident/create", { title: "Create new incident" });
@@ -89,16 +103,13 @@ module.exports.processEdit = (req, res, next) => {
 module.exports.performDelete = (req, res, next) => {
   let id = req.params.id;
 
-  Incident.remove({_id: id}, (err) => {
-      if(err)
-      {
-          console.log(err);
-          res.end(err);
-      }
-      else
-      {
-        res.redirect('/incidentLog');
-      }
+  Incident.remove({ _id: id }, (err) => {
+    if (err) {
+      console.log(err);
+      res.end(err);
+    } else {
+      res.redirect("/incidentLog");
+    }
   });
 };
 

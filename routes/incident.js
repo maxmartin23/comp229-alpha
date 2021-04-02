@@ -8,17 +8,7 @@ let incidentController = require('../server/controllers/incident.controller');
 const incident = require('../server/models/incident');
 
 
-router.get('/',  (req, res, next) => {
-    Incident.find((err, IncidentLog) => {
-        if(err){
-            return console.error(err);
-        } else{
-            res.render('incidentList', {title: 'List of Incidents', IncidentLog: IncidentLog})
-            console.log(IncidentLog)
-        } 
-
-    });   
-});
+router.get('/', incidentController.displayList);
 
 router.get('/create',  incidentController.displayCreate);
 
