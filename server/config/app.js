@@ -23,7 +23,7 @@ let usersRouter = require('../../routes/users');
 let incidentRouter = require('../../routes/incident');
 
 let app = express();
-app.use(cors());
+app.use(cors());//TODO: For the time being cors enabled for all origins!!
 
 // view engine setup
 app.set('views', path.join(__dirname, '../../views'));
