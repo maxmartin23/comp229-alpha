@@ -17,13 +17,14 @@ module.exports.displayList = (req, res, next) => {
     if (err) {
       return console.error(err);
     } else {
-      res.render("incidentList", {
-        title: "List of Incidents",
-        IncidentLog: IncidentLog,
-      });
       //console.log(IncidentLog);
+      res.json({
+        success: true,
+        msg: "Incident list returned",
+        data: IncidentLog,
+      });
     }
-  })
+  });
 };
 
 //Controller action for displaying create incident view
@@ -50,8 +51,7 @@ module.exports.processCreate = (req, res, next) => {
       console.log(err);
       res.end(err);
     } else {
-      //Redirect to incident dashboard
-      res.redirect("/incidentLog");
+      res.json({ success: true, msg: "Incident created" });
     }
   });
 };
@@ -94,7 +94,7 @@ module.exports.processEdit = (req, res, next) => {
       console.log(err);
       res.end(err);
     } else {
-      res.redirect("/incidentLog");
+      res.json({ success: true, msg: "Incident updated" });
     }
   });
 };
@@ -108,7 +108,7 @@ module.exports.performDelete = (req, res, next) => {
       console.log(err);
       res.end(err);
     } else {
-      res.redirect("/incidentLog");
+      res.json({ success: true, msg: "Incident deleted" });
     }
   });
 };
