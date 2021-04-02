@@ -15,14 +15,15 @@ let Incident = require("../models/incident");
 module.exports.displayList = (req, res, next) => {
   Incident.find((err, IncidentLog) => {
     if (err) {
-      return console.error(err);
+      return res.json({success: false, msg: "Error listing incidents: " + err});
     } else {
       //console.log(IncidentLog);
-      res.json({
-        success: true,
-        msg: "Incident list returned",
-        data: IncidentLog,
-      });
+      // return res.json({
+      //   success: true,
+      //   msg: "Incident list returned",
+      //   data: IncidentLog,
+      // });
+      return res.json(IncidentLog);
     }
   });
 };
@@ -49,7 +50,8 @@ module.exports.processCreate = (req, res, next) => {
   Incident.create(newIncident, (err) => {
     if (err) {
       console.log(err);
-      res.end(err);
+      //res.end(err);
+      res.json({success: false, msg: err});
     } else {
       res.json({ success: true, msg: "Incident created" });
     }
@@ -62,7 +64,7 @@ module.exports.displayEdit = (req, res, next) => {
   Incident.findById(id, (err, incident) => {
     if (err) {
       console.error(err);
-      res.end(err);
+      res.json({success: false, msg: err});
     } else {
       console.log(incident.number);
       res.render("incident/edit", {
@@ -92,7 +94,7 @@ module.exports.processEdit = (req, res, next) => {
   Incident.updateOne({ _id: id }, incident, (err) => {
     if (err) {
       console.log(err);
-      res.end(err);
+      res.json({success: false, msg: err});
     } else {
       res.json({ success: true, msg: "Incident updated" });
     }

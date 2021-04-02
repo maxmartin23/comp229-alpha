@@ -4,6 +4,8 @@ let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 
+let cors = require('cors')
+
 let mongoose = require('mongoose');
 let db = require('./db');
 
@@ -21,6 +23,7 @@ let usersRouter = require('../../routes/users');
 let incidentRouter = require('../../routes/incident');
 
 let app = express();
+app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, '../../views'));
@@ -36,6 +39,7 @@ app.use(express.static(path.join(__dirname, '../../node_modules')));
 app.use('/api', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/incidents', incidentRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
