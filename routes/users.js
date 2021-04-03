@@ -11,4 +11,6 @@ router.post('/edit/:id', userController.processEdit);
 
 router.get('/delete/:id', userController.performDelete);
 
+router.post('/authenticate', userController.authenticateUser);
+
 module.exports = router;
