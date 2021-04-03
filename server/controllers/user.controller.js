@@ -1,3 +1,4 @@
+
 let express = require("express");
 let router = express.Router();
 
@@ -13,6 +14,25 @@ module.exports.displayList = (req, res, next) => {
     }
   });
 };
+
+module.exports.authenticateUser = (req, res, next) => {
+  User.find((err, userList) => {
+      if(err)
+      {
+          return console.error(err);
+      }
+      else
+      {
+          auth = false
+          userList.map(u => {
+              if(u.username==req.body.username && u.password==req.body.password){
+                  auth = true;
+              }
+          })
+          res.send({"message" : auth ? "User is autheticated" : "User isn't authenticated"});      
+      }
+  });
+}
 
 //Controller action for processing create action
 module.exports.processCreate = (req, res, next) => {
