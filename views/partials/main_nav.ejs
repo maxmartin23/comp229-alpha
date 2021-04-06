@@ -18,23 +18,32 @@
               <% } %>
                 <a class="nav-link" href="/home">Home</a>
             </li>
-
-            <% if (title=="New Incident" ){%>
-              <li class="nav-item active">
-                <%}else{%>
-              <li class="nav-item">
-                <% } %>
-                  <a class="nav-link" href="/incidentLog/create">New Incident</a>
-              </li>
-
-              <% if (title=="Incident List" ){%>
+            
+            
+            <% if(typeof displayName == 'string' && displayName) { %>
+              <% if (title=="New Incident" ){%>
                 <li class="nav-item active">
                   <%}else{%>
                 <li class="nav-item">
                   <% } %>
-                    <a class="nav-link" href="/incidentLog">Incident Log</a>
+                    <a class="nav-link" href="/incidentLog/create">New Incident</a>
                 </li>
-
+  
+                <% if (title=="Incident List" ){%>
+                  <li class="nav-item active">
+                    <%}else{%>
+                  <li class="nav-item">
+                    <% } %>
+                      <a class="nav-link" href="/incidents">Incident Log</a>
+                  </li>
+              <li class="navbar-text"><i class="fas fa-lg fa-user"></i> Welcome, <%= displayName %></li>
+              <li class="nav-item"><a href="/logout" class="nav-link">
+                <i class="fas fa-lg fa-sign-out-alt"></i> Logout</a></li>
+            <% } else { %>
+              <li class="nav-item"><a href="/login" class="nav-link">
+                <i class="fas fa-lg fa-sign-in-alt"></i> Login</a></li>
+            <% } %>
+          
         </ul>
 
       </div>
